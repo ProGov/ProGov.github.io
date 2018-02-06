@@ -28,10 +28,7 @@ function pick() {
 	hh = dt.getHours();
 	mm = dt.getMinutes();
     
-    document.getElementById('time').innerHTML = hh + ":" + mm;
-    
 	remove("bg-info");
-    
     
     if(hh == 8) {
         if(mm <= 45) {
