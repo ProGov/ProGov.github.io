@@ -29,8 +29,6 @@ function pick() {
 	hh = dt.getHours();
 	mm = dt.getMinutes();
     
-    hh += 5;
-    
 	remove("bg-info");
     
     if(hh == 8) {
@@ -111,12 +109,12 @@ function pick() {
         } else if(mm >= 30) {
             activeRow(".tRow16", ".tRow15");
         }
-    } else if(hh = 21) {
+    } else if(hh == 21) {
         if(mm <= 15) {
             activeRow(".tRow16", ".tRow15");
         }
     } else {
-        $('.tRow0').toggleClass(".bg-warning");
+        $('.tRow0').addClass(".bg-success");
     }
 }
 
