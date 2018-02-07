@@ -1,6 +1,9 @@
-function activeRow(x, y) {
+function activeRow(x) {
 	$(x).addClass("bg-info");
-    $(y).hide(10000);
+}
+
+function hideRow(x) {
+    $(x).hide(10000);
 }
 
 function remove(x) {
@@ -33,85 +36,276 @@ function pick() {
     
     if(hh == 8) {
         if(mm <= 45) {
-            activeRow(".tRow1", ".tRow16");
+            activeRow(".tRow1");
         } else if(mm >= 50) {
-            activeRow(".tRow2", ".tRow1");
+            activeRow(".tRow2");
+            hideRow(".tRow1");
         }
     } else if(hh == 9) {
         if(mm <= 35) {
-            activeRow(".tRow2", ".tRow1");
+            activeRow(".tRow2");
+            hideRow(".tRow1");
         } else if(mm >= 40) {
-            activeRow(".tRow3", ".tRow2");
+            activeRow(".tRow3");
+            hideRow(".tRow1");
+            hideRow(".tRow2");
         }
     } else if(hh == 10) {
         if(mm <= 25) {
-            activeRow(".tRow3", ".tRow2");
+            activeRow(".tRow3");
+            hideRow(".tRow1");
+            hideRow(".tRow2");
         } else if(mm >= 30) {
-            activeRow(".tRow4", ".tRow3");
+            activeRow(".tRow4");
+            hideRow(".tRow1");
+            hideRow(".tRow2");
+            hideRow(".tRow3");
         }
     } else if(hh == 11) {
         if(mm <= 15) {
-            activeRow(".tRow4", ".tRow3");
+            activeRow(".tRow4");
+            hideRow(".tRow1");
+            hideRow(".tRow2");
+            hideRow(".tRow3");
         } else if(mm >= 20) {
-            activeRow(".tRow5", ".tRow4");
+            activeRow(".tRow5");
+            hideRow(".tRow1");
+            hideRow(".tRow2");
+            hideRow(".tRow3");
+            hideRow(".tRow4");
         }
     } else if(hh == 12) {
         if(mm <= 5) {
-            activeRow(".tRow5", ".tRow4");
+            activeRow(".tRow5");
+            hideRow(".tRow1");
+            hideRow(".tRow2");
+            hideRow(".tRow3");
+            hideRow(".tRow4");
         } else if ((mm >= 10) && (mm <= 55)) {
-            activeRow(".tRow6", ".tRow5");
+            activeRow(".tRow6");
+            hideRow(".tRow1");
+            hideRow(".tRow2");
+            hideRow(".tRow3");
+            hideRow(".tRow4");
+            hideRow(".tRow5");
         }
     } else if(hh == 13) {
         if(mm <= 45) {
-            activeRow(".tRow7", ".tRow6");
+            activeRow(".tRow7");
+            hideRow(".tRow1");
+            hideRow(".tRow2");
+            hideRow(".tRow3");
+            hideRow(".tRow4");
+            hideRow(".tRow5");
+            hideRow(".tRow6");
         } else if(mm >= 50) {
-            activeRow(".tRow8", ".tRow7");
+            activeRow(".tRow8");
+            hideRow(".tRow1");
+            hideRow(".tRow2");
+            hideRow(".tRow3");
+            hideRow(".tRow4");
+            hideRow(".tRow5");
+            hideRow(".tRow6");
+            hideRow(".tRow7");
         }
     } else if(hh == 14) {
         if(mm <= 35) {
-            activeRow(".tRow8", ".tRow7");
+            activeRow(".tRow8");
+            hideRow(".tRow1");
+            hideRow(".tRow2");
+            hideRow(".tRow3");
+            hideRow(".tRow4");
+            hideRow(".tRow5");
+            hideRow(".tRow6");
+            hideRow(".tRow7");
         } else if(mm >= 40) {
-            activeRow(".tRow9", ".tRow8");
+            activeRow(".tRow9");
+            hideRow(".tRow1");
+            hideRow(".tRow2");
+            hideRow(".tRow3");
+            hideRow(".tRow4");
+            hideRow(".tRow5");
+            hideRow(".tRow6");
+            hideRow(".tRow7");
+            hideRow(".tRow8");
         }
     } else if(hh == 15) {
         if(mm <= 25) {
-            activeRow(".tRow9", ".tRow8");
+            activeRow(".tRow9");
+            hideRow(".tRow1");
+            hideRow(".tRow2");
+            hideRow(".tRow3");
+            hideRow(".tRow4");
+            hideRow(".tRow5");
+            hideRow(".tRow6");
+            hideRow(".tRow7");
+            hideRow(".tRow8");
         } else if(mm >= 30) {
-            activeRow(".tRow10", ".tRow9");
+            activeRow(".tRow10");
+            hideRow(".tRow1");
+            hideRow(".tRow2");
+            hideRow(".tRow3");
+            hideRow(".tRow4");
+            hideRow(".tRow5");
+            hideRow(".tRow6");
+            hideRow(".tRow7");
+            hideRow(".tRow8");
+            hideRow(".tRow9");
         }
     } else if(hh == 16) {
         if(mm <= 15) {
-            activeRow(".tRow10", ".tRow9");
+            activeRow(".tRow10");
+            hideRow(".tRow1");
+            hideRow(".tRow2");
+            hideRow(".tRow3");
+            hideRow(".tRow4");
+            hideRow(".tRow5");
+            hideRow(".tRow6");
+            hideRow(".tRow7");
+            hideRow(".tRow8");
+            hideRow(".tRow9");
         } else if(mm >= 20) {
-            activeRow(".tRow11", ".tRow10");
+            activeRow(".tRow11");
+            hideRow(".tRow1");
+            hideRow(".tRow2");
+            hideRow(".tRow3");
+            hideRow(".tRow4");
+            hideRow(".tRow5");
+            hideRow(".tRow6");
+            hideRow(".tRow7");
+            hideRow(".tRow8");
+            hideRow(".tRow9");
+            hideRow(".tRow10");
         } 
     } else if(hh == 17) {
         if(mm <= 5) {
-            activeRow(".tRow11", ".tRow10");
+            activeRow(".tRow11");
+            hideRow(".tRow1");
+            hideRow(".tRow2");
+            hideRow(".tRow3");
+            hideRow(".tRow4");
+            hideRow(".tRow5");
+            hideRow(".tRow6");
+            hideRow(".tRow7");
+            hideRow(".tRow8");
+            hideRow(".tRow9");
+            hideRow(".tRow10");
         } else if((mm >= 10) && (mm <= 55)) {
-            activeRow(".tRow12", ".tRow11");
+            activeRow(".tRow12");
+            hideRow(".tRow1");
+            hideRow(".tRow2");
+            hideRow(".tRow3");
+            hideRow(".tRow4");
+            hideRow(".tRow5");
+            hideRow(".tRow6");
+            hideRow(".tRow7");
+            hideRow(".tRow8");
+            hideRow(".tRow9");
+            hideRow(".tRow10");
+            hideRow(".tRow11");
         }
     } else if(hh == 18) {
         if(mm <= 45) {
-            activeRow(".tRow13", ".tRow12");
+            activeRow(".tRow13");
+            hideRow(".tRow1");
+            hideRow(".tRow2");
+            hideRow(".tRow3");
+            hideRow(".tRow4");
+            hideRow(".tRow5");
+            hideRow(".tRow6");
+            hideRow(".tRow7");
+            hideRow(".tRow8");
+            hideRow(".tRow9");
+            hideRow(".tRow10");
+            hideRow(".tRow11");
+            hideRow(".tRow12");
         } else if(mm >= 50) {
-            activeRow(".tRow14", ".tRow13");
+            activeRow(".tRow14");
+            hideRow(".tRow1");
+            hideRow(".tRow2");
+            hideRow(".tRow3");
+            hideRow(".tRow4");
+            hideRow(".tRow5");
+            hideRow(".tRow6");
+            hideRow(".tRow7");
+            hideRow(".tRow8");
+            hideRow(".tRow9");
+            hideRow(".tRow10");
+            hideRow(".tRow11");
+            hideRow(".tRow12");
+            hideRow(".tRow13");
         }
     } else if(hh == 19) {
         if(mm <= 35) {
-            activeRow(".tRow14", ".tRow13");
+            activeRow(".tRow14");
+            hideRow(".tRow1");
+            hideRow(".tRow2");
+            hideRow(".tRow3");
+            hideRow(".tRow4");
+            hideRow(".tRow5");
+            hideRow(".tRow6");
+            hideRow(".tRow7");
+            hideRow(".tRow8");
+            hideRow(".tRow9");
+            hideRow(".tRow10");
+            hideRow(".tRow11");
+            hideRow(".tRow12");
+            hideRow(".tRow13");
         } else if(mm >= 40) {
-            activeRow(".tRow15", ".tRow14");
+            activeRow(".tRow15");
+            hideRow(".tRow1");
+            hideRow(".tRow2");
+            hideRow(".tRow3");
+            hideRow(".tRow4");
+            hideRow(".tRow5");
+            hideRow(".tRow6");
+            hideRow(".tRow7");
+            hideRow(".tRow8");
+            hideRow(".tRow9");
+            hideRow(".tRow10");
+            hideRow(".tRow11");
+            hideRow(".tRow12");
+            hideRow(".tRow13");
+            hideRow(".tRow14");
         }
     } else if(hh == 20) {
         if(mm <= 25) {
-            activeRow(".tRow15", ".tRow14");
+            activeRow(".tRow15");
+            hideRow(".tRow1");
+            hideRow(".tRow2");
+            hideRow(".tRow3");
+            hideRow(".tRow4");
+            hideRow(".tRow5");
+            hideRow(".tRow6");
+            hideRow(".tRow7");
+            hideRow(".tRow8");
+            hideRow(".tRow9");
+            hideRow(".tRow10");
+            hideRow(".tRow11");
+            hideRow(".tRow12");
+            hideRow(".tRow13");
+            hideRow(".tRow14");
         } else if(mm >= 30) {
-            activeRow(".tRow16", ".tRow15");
+            activeRow(".tRow16");
+            hideRow(".tRow1");
+            hideRow(".tRow2");
+            hideRow(".tRow3");
+            hideRow(".tRow4");
+            hideRow(".tRow5");
+            hideRow(".tRow6");
+            hideRow(".tRow7");
+            hideRow(".tRow8");
+            hideRow(".tRow9");
+            hideRow(".tRow10");
+            hideRow(".tRow11");
+            hideRow(".tRow12");
+            hideRow(".tRow13");
+            hideRow(".tRow14");
+            hideRow(".tRow15");
         }
     } else if(hh == 21) {
         if(mm <= 15) {
-            activeRow(".tRow16", ".tRow15");
+            activeRow(".tRow16");
         }
     } else {
         $('.tRow0').addClass(".bg-success");
