@@ -1,9 +1,10 @@
 function activeRow(x) {
-	$(x).addClass("bg-info");
+    $(x).addClass('bg-info');
+	//$(x).toggleClass('bg-info');
 }
 
 function hideRow(x) {
-    $(x).hide(10000);
+    $(x).hide(5000);
 }
 
 function remove(x) {
@@ -308,7 +309,7 @@ function pick() {
             activeRow(".tRow16");
         }
     } else {
-        $('.tRow0').addClass(".bg-success");
+        $('.tRow0').toggleClass('bg-warning');
     }
 }
 
