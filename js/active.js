@@ -1,6 +1,54 @@
 function activeRow(x) {
-    $(x).addClass('bg-info');
+    var mon, tue, wed, thu, fri, sat, sun = " ";
+    
+    mon = " .mon";
+    tue = " .tue";
+    wed = " .wed";
+    thu = " .thu";
+    fri = " .fri";
+    sat = " .sat";
+    sun = " .sun";
+    
+    var dt = new Date();
+    var dd = dt.getDay();
+    
+    switch(dd) {
+        case 0:
+        {
+            $(x + sun).addClass('bg-info');                
+        }
+        break;
+        case 1:
+        {
+            $(x + mon).addClass('bg-info');                
+        }
+        break;
+        case 2:
+        {
+            $(x + tue).addClass('bg-info');                
+        }
+        break;
+        case 3:
+        {
+            $(x + wed).addClass('bg-info');                
+        }
+        break;
+        case 4:
+        {
+            $(x + thu).addClass('bg-info');                
+        }
+        break;
+        case 5:
+        {
+            $(x + fri).addClass('bg-info');                
+        }
+        break;
+        default:
+        {
+            $(x + sat).addClass('bg-info');                
+        }
 	//$(x).toggleClass('bg-info');
+    }
 }
 
 function hideRow(x) {
@@ -28,12 +76,12 @@ function remove(x) {
 }
 function pick() {
 	var dt = new Date();
-	var hh, mm = 0;
+	var dd, hh, mm = 0;
 	
 	hh = dt.getHours();
 	mm = dt.getMinutes();
     
-	remove("bg-info");
+    remove("bg-info");
     
     if(hh == 8) {
         if(mm <= 45) {
