@@ -17,5 +17,5 @@ function startTime() {
 	mm = check(mm);
 	ss = check(ss);
 	
-	document.getElementById('clock').innerHTML = hh + ":" + mm + ":" + ss;
+	document.getElementById('clock').innerHTML = hh + ":" + mm;
 }
