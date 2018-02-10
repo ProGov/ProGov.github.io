@@ -1,1 +1,1 @@
-var t = setInterval('startTime()', 1000);
+var t = setInterval('startTime()', 900);

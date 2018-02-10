@@ -1,3 +1,5 @@
+var dt, hh, mm, ss;
+
 function check(i) {
     "use strict";
     return ((i < 10) ? "0" + i : i);
@@ -5,9 +7,6 @@ function check(i) {
 
 function startTime() {
     "use strict";
-    
-	var dt, hh, mm, ss;
-    
     dt = new Date();
 	
 	hh = dt.getHours();
@@ -19,5 +18,4 @@ function startTime() {
 	ss = check(ss);
 	
 	document.getElementById('clock').innerHTML = hh + ":" + mm + ":" + ss;
-    //Do not use recursion
 }
