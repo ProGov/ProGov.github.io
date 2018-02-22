@@ -5,7 +5,11 @@ var mon = " .mon",
     fri = " .fri",
     sat = " .sat",
     sun = " .sun",
-    dd, dt, hh, mm, ss = new Date();
+    dd,
+    dt,
+    hh,
+    mm,
+    ss = new Date();
 
 function activeCell(x) {
     'use strict';
@@ -36,13 +40,14 @@ function activeCell(x) {
     }
 }
 function activeTime(x) {
+    'use strict';
     $('.time' + x).addClass('text-white').addClass('bg-dark');
 }
 
 function hideRows(x) {
     'use strict';
     
-    for(var i = 1; i <= x; i++) {
+    for (var i = 1; i <= x; i++) {
         $(".tRow" + i).hide(5000);   
     }
 }
@@ -205,7 +210,7 @@ function pick() {
 
 $(document).ready(function () {
     'use strict';
-	var t = setInterval('pick()', 1000);
+	var u = setInterval('pick()', 1000);
     $('.class').addClass('bg-secondary').addClass('text-white');
     $('.tutorial').addClass('bg-success').addClass('text-white');
     $('.practical').addClass('bg-warning');

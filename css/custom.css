@@ -1,0 +1,9 @@
+@keyframes animate-colour {
+from{background-color: black};
+to{background-color: white};
+}
+
+td {
+    animation: animate-colour;
+    animation-duration: 4s;
+}
