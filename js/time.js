@@ -52,6 +52,6 @@ function startTime() {
 	ss = check(ss);
     date = check(date);
 	
-	document.getElementById('clock').innerHTML = hh + ":" + mm + " " + day();
+	document.getElementById('clock').innerHTML = hh + ":" + mm + ":" + ss;
     document.getElementById('head').innerHTML = date + " " + month() + " " + yy;
 }
