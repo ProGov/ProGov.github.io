@@ -1,36 +1,22 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
-	<head>
-	    <title>Schedule</title>
+    <head>
+        <title>Room Schedule</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 
-	    <meta charset="utf-8">
-	    <meta name="viewport" content="width=device-width, initial-scale=1">
-	    
-	    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	    <script type="module/javascript" src="/js/config.js"></script>
-	    <script type="text/javascript" src="Query.js"></script>
-	    <script type="text/javascript" language="javascript" src="js/time.js"></script>   
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script type="text/javascript" language="javascript" src="js/time.js"></script>    
+        <!--<script type="module/javascript src="/js/config.js"></script>-->
 
-	    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	    <link rel="stylesheet" type="text/css" href="css/table.css">     
-        <link rel="stylesheet" type="text/css" href="css/heading.css">
-
-	</head>
-
-	<script>
-		var token_full = window.location.hash.substr(1);
-		//alert(token_full);
-	    //console.log(token_full);
-	    var fragment = token_full.split("&");
-	   // console.log(fragment);
-	    var access_token = fragment[0].replace("access_token=", "");
-	   // console.log(access_token);
-	</script>
-
-	<body onload = "queryResponse('https://graph.microsoft.com/v1.0/cccbf502-6b91-40d6-be02-5ffa0eb711d6/users/Assembly@bbd.co.za/calendar/events?$select=subject%2corganizer%2cstart%2cend', access_token)">
-
-		<div class="container-fluid">
+        <link rel="stylesheet" type="text/css" href="css/table.css">     
+        <link rel="stylesheet" type="text/css" href="css/heading.css"> 
+        
+    </head>
+    <body>
+        <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-12 col-xs-12 col-md-12">
                     <div class="heading stick-top">
@@ -43,18 +29,11 @@
             </div>
             <div class="row">
                 <div class="col-lg-12 col-xs-12 col-md-12 table-responsive">
-                    <table class="table table-dark table-responsive">
+                    <table class="table table-dark table-hover table-responsive">
                         <thead class="thead-dark">
                             <tr>
                                 <th colspan="2">
-                                	<span class="roomname">Room: </span>
-                                	<select id="roomSelector" onchange="findRoom(this.value)">
-									  <option value="Assembly">Assembly</option>
-									  <option value="Flex">Flex</option>
-									  <option value="iOS">iOS</option>
-									  <option value="Windows">Windows</option>
-									</select>
-                                    <!--<span class="roomname">Room name goes hear</span>-->
+                                    <span class="roomname">Room name goes hear</span>
                                 </th>
                             <tr>            
                                 <th>Time</th>
@@ -116,7 +95,5 @@
             </div>  
         </div>
         <script type="text/javascript" language="javascript" src="js/startTime.js"></script>
-
-	</body>
-
+    </body>
 </html>
