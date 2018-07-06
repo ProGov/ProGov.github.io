@@ -100,7 +100,7 @@ section{
 	        box-shadow: 0 2px 2px -2px #969696;
 }
 
-select {
+select{
   background-color: #3C3C48;
   width: 20%;
   font-size: 3vw;
@@ -115,7 +115,7 @@ select {
  }
 
 @media (min-width: 300px) { /* use the max to specify at each container level */
-    .specified {   
+    .specified {    
         width:360px;  /* adjust to desired wrapping */
         white-space: normal !important;
         overflow-wrap: break-word;

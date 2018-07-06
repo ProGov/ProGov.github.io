@@ -1,5 +1,5 @@
 ﻿function auth() {
-	window.location.href = 'https://login.microsoftonline.com/cccbf502-6b91-40d6-be02-5ffa0eb711d6/oauth2/v2.0/authorize?client_id=33177856-90b2-4115-858a-6aeaace22739&response_type=id_token+token&redirect_uri=http%3A%2F%2Flocalhost%3a52700%2Findex.html&scope=openid%20https%3A%2F%2Fgraph.microsoft.com%2Fuser.read%20https%3A%2F%2Fgraph.microsoft.com%2Fcalendars.read%20https%3A%2F%2Fgraph.microsoft.com%2Fcalendars.read.shared&response_mode=fragment&state=52700&nonce=7362CAEA-9CA5-4B43-9BA3-34D7C303EBA7';
+	window.location.href = 'https://login.microsoftonline.com/cccbf502-6b91-40d6-be02-5ffa0eb711d6/oauth2/v2.0/authorize?client_id=51c1fb1d-5387-491a-a7ac-33ac7c4ae39a&response_type=id_token+token&redirect_uri=http%3A%2F%2Flocalhost%3a52700%2Findex.html&scope=openid%20https%3A%2F%2Fgraph.microsoft.com%2Fuser.read%20https%3A%2F%2Fgraph.microsoft.com%2Fcalendars.read%20https%3A%2F%2Fgraph.microsoft.com%2Fcalendars.read.shared&response_mode=fragment&state=52700&nonce=7362CAEA-9CA5-4B43-9BA3-34D7C303EBA7';
 }
 
 function findRoom(room){
