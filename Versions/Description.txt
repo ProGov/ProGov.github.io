@@ -1,2 +1,0 @@
-Added the sort by time (regardless of date)
-Scrappy Table
