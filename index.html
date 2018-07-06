@@ -1,128 +1,177 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
-<head>
-    <title>BBD Schedule</title>
-    <meta charset="utf-8">
+	<head>
+		<title>BBD Schedule</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<script type="module/javascript" src="/js/config.js"></script>
+		
+		<script type="text/javascript" language="javascript" src="js/time.js"></script>    
+		
+		<link rel="stylesheet" type="text/css" href="css/table.css">     
+        <link rel="stylesheet" type="text/css" href="css/heading.css"> 
+		
+		<script type="text/javascript" language="javascript">
+			//Functions
+			function query(URL, accessToken) {
+				var req = new XMLHttpRequest();
+					
+				req.open("GET", URL, false);
+				req.setRequestHeader("Authorization", "bearer " + accessToken);			
+				req.send(null);
+				
+				return req.responseText;
+			}
+			
+			function queryResponse(URL, accessToken) {
+			
+				var response = query(URL, accessToken);	
+				var data = JSON.parse(response);
+				
+				var events = [];
+				
+				for(var i = 0; i < data["value"].length; i++) {
+					//Retrieve Data
+					var s = data["value"][i]["subject"];
+					var sDateTime = data["value"][i]["start"]["dateTime"];
+					var sTimeZone = data["value"][i]["start"]["timeZone"];
+					var eDateTime = data["value"][i]["end"]["dateTime"];	
+					var eTimeZone = data["value"][i]["end"]["timeZone"];
+					var oName = data["value"][i]["organizer"]["emailAddress"]["name"];			
+					var oEmailAddress = data["value"][i]["organizer"]["emailAddress"]["address"];
+					//Store Data
+					var event = {subject: s,
+							startDateTime: sDateTime,
+							startTimeZone: sTimeZone,
+							endDateTime: eDateTime,
+							endTimeZone: eTimeZone,
+							organizerName: oName, 
+							organizerEmailAddress: oEmailAddress
+					};	
+					events.push(event);
+				}
+		
+				for(var i = 0; i < events.length; i++) {
+					var dt = new Date(events[i].startDateTime);
+					
+					for(var  j = 6; j < 18; j++) {
+						if(j == dt.getHours()) {
+							document.getElementById("bRow" + j).innerHTML = events[i].subject;
+						}
+					}
+				}
+			}
+			
+			function auth() {
+				window.location.href = 'https://login.microsoftonline.com/cccbf502-6b91-40d6-be02-5ffa0eb711d6/oauth2/v2.0/authorize?client_id=33177856-90b2-4115-858a-6aeaace22739&response_type=id_token+token&redirect_uri=http%3A%2F%2Fprogov.github.io%3a%2Findex.html&scope=openid%20https%3A%2F%2Fgraph.microsoft.com%2Fuser.read%20https%3A%2F%2Fgraph.microsoft.com%2Fcalendars.read%20https%3A%2F%2Fgraph.microsoft.com%2Fcalendars.read.shared&response_mode=fragment&state=0&nonce=7362CAEA-9CA5-4B43-9BA3-34D7C303EBA7';
+			}
+		</script>
+	</head>
 
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-    <script type="text/javascript" language="javascript" src="js/time.js"></script>
-    <script type="text/javascript" language="javascript" src="js/app.js"></script>
-    <script type="module/javascript" src="/js/config.js"></script>
-
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="css/table.css">     
-    <link rel="stylesheet" type="text/css" href="css/heading.css"> 
-</head>
-
-<script>
-    var token_full = window.location.hash.substr(1);
-    // console.log(token_full);
-    var fragment = token_full.split("&");
-    // console.log(fragment);
-    var access_token = fragment[0].replace("access_token=", "");    
-    if(access_token == "") {
-        auth();
-    }
-    var t = setInterval("queryResponse('https://graph.microsoft.com/v1.0/cccbf502-6b91-40d6-be02-5ffa0eb711d6/users/Assembly@bbd.co.za/calendar/events?$select=subject%2corganizer%2cstart%2cend', access_token)", 10000);
-    //var tee = setInterval("setToDefaultRoom()", 5000);    //didn't work
-
-</script>
-
-<body  onload = "queryResponse('https://graph.microsoft.com/v1.0/cccbf502-6b91-40d6-be02-5ffa0eb711d6/users/Assembly@bbd.co.za/calendar/events?$select=subject%2corganizer%2cstart%2cend', access_token)">
-
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-lg-12 col-xs-12 col-md-12">
-                <div class="heading stick-top">
-                    <img src="https://www.bbd.co.za/wp-content/uploads/2018/03/BBD-logo.png" alt="im"  align="left"/>
-                    <span class="title">
-                        <span class="clock" id="clock">Clock Section</span>
+	<body>
+		<div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12 col-xs-12 col-md-12">
+                    <div class="heading stick-top">
+                        <img src="https://www.bbd.co.za/wp-content/uploads/2018/03/BBD-logo.png" alt="im"  align="left"/>
+                        <span class="title">
+                            <span class="clock" id="clock">Clock Section</span>
                         </span>
+                    </div>
+                </div>  
+            </div>
+            <div class="row">
+                <div class="col-lg-12 col-xs-12 col-md-12 table-responsive">
+                    <table class="table table-dark table-hover table-responsive">
+                        <thead class="thead-dark">
+							<tr>
+									<th colspan="2">
+										<span class="roomname">Room</span>
+										<select id="roomSelector" onchange="findRoom(this.value)">
+											<option value="Assembly">Assembly</option>
+											<option value="Flex">Flex</option>
+											<option value="iOS">iOS</option>
+											<option value="Windows">Windows</option>
+										</select>
+									</th>
+							 <tr>
+                            <tr>
+                                <th colspan="2">
+                                    <span class="roomname">ROOM NAME GOES HERE</span>
+                                </th>
+                            <tr>            
+                                <th class="time">TIME</th>
+                                <th>BOOKING</th>
+                            </tr>
+                        </thead>
+                        <tbody>                           
+                            <tr>
+                                <td class="specified" id="tRow7">07:00</td>
+                                <td class="specified" id="bRow7"></td>
+                            </tr>
+                            <tr>
+                                <td class="specified" id="tRow8">08:00</td>
+                                <td class="specified" id="bRow8"></td>
+                            </tr>
+                            <tr>
+                                <td class="specified" id="tRow9">09:00</td>
+                                <td class="specified" id="bRow9"></td>
+                            </tr>
+                            <tr>
+                                <td class="specified" id="tRow10">10:00</td>
+                                <td class="specified" id="bRow10"></td>
+                            </tr>
+                            <tr>
+                                <td class="specified" id="tRow11">11:00</td>
+                                <td class="specified" id="bRow11"></td>
+                            </tr>
+                            <tr>
+                                <td class="specified" id="tRow12">12:00</td>
+                                <td class="specified" id="bRow12"></td>
+                            </tr>
+                            <tr>
+                                <td class="specified" id="tRow13">13:00</td>
+                                <td class="specified" id="bRow13"></td>
+                            </tr>
+                            <tr>
+                                <td class="specified" id="tRow14">14:00</td>
+                                <td class="specified" id="bRow14"></td>
+                            </tr>
+                            <tr>
+                                <td class="specified" id="tRow15">15:00</td>
+                                <td class="specified" id="bRow15"></td>
+                            </tr>
+                            <tr>
+                                <td class="specified" id="tRow16">16:00</td>
+                                <td class="specified" id="bRow16"></td>
+                            </tr>
+                            <tr>
+                                <td class="specified" id="tRow17">17:00</td>
+                                <td class="specified" id="bRow17"></td>
+                            </tr>
+                            <tr>
+                                <td class="specified" id="tRow18">18:00</td>
+                                <td class="specified" id="bRow18"></td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>  
         </div>
-        <div class="row">
-            <div class="col-lg-6 col-xs-6 col-md-6 table-responsive">
-                <table class="table table-dark table-striped table-responsive">
-                    <thead class="thead-dark">
-							<tr>
-                                <th colspan="2">
-                                    <span class="roomname">Room: </span>
-                                    <select id="roomSelector" onchange="findRoom(this.value)">
-                                      <option value="Assembly">Assembly</option>
-                                      <option value="Flex">Flex</option>
-                                      <option value="iOS">iOS</option>
-                                      <option value="Windows">Windows</option>
-                                    </select>
-                                    <!--<span class="roomname">Room name goes hear</span>-->
-                                </th>
-                         <tr>           
-                            <th class="col-sm-1">Time</th>
-                            <th class="col-sm-4">Booking</th>
-                        </tr>
-                    </thead>
-                    <tbody>                           
-                        <tr>
-                            <td>07:00</td>
-                            <td class="specified" id="b07">___</td>
-                        </tr>
-                        <tr>
-                            <td>08:00</td>
-                            <td class="specified" id="b08">___</td>
-                        </tr>
-                        <tr>
-                            <td>09:00</td>
-                            <td class="specified" id="b09">___</td>
-                        </tr>
-                        <tr>
-                            <td>10:00</td>
-                            <td class="specified" id="b10">___</td>
-                        </tr>
-                        <tr>
-                            <td>11:00</td>
-                            <td class="specified" id="b11">___</td>
-                        </tr>
-                        <tr>
-                            <td>12:00</td>
-                            <td class="specified" id="b12">___</td>
-                        </tr>
-                        <tr>
-                            <td>13:00</td>
-                            <td class="specified" id="b13">___</td>
-                        </tr>
-                        <tr>
-                            <td>14:00</td>
-                            <td class="specified" id="b14">___</td>
-                        </tr>
-                        <tr>
-                            <td>15:00</td>
-                            <td class="specified" id="b15">___</td>
-                        </tr>
-                        <tr>
-                            <td>16:00</td>
-                            <td class="specified" id="b16">___</td>
-                        </tr>
-                        <tr>
-                            <td>17:00</td>
-                            <td class="specified" id="b17">___</td>
-                        </tr>
-                        <tr>
-                            <td>18:00</td>
-                            <td class="specified" id="b18">___</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>  
-    </div>
+        <script type="text/javascript" language="javascript" src="js/startTime.js"></script>
+		<script type="text/javascript" language="javascript">
+			var token_full = window.location.hash.substr(1);
+			var fragment = token_full.split("&");
+			var access_token = fragment[0].replace("access_token=", "");
+			
+			if(access_token == "") {
+				auth();
+			}
+			var t = setInterval("queryResponse('https://graph.microsoft.com/v1.0/cccbf502-6b91-40d6-be02-5ffa0eb711d6/users/flex@bbd.co.za/calendar/events?$select=subject%2corganizer%2cstart%2cend', access_token)", 10000);
+		</script>
 
-
-    <script type="text/javascript" language="javascript" src="js/startTime.js"></script>
-
-
-</body>
-
+	</body>
 </html>
