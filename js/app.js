@@ -58,6 +58,10 @@ function minTimeFromDate(date) {
 
 function queryResponse(URL, a_t) {
 	//set the combo box here
+	var elementThing = document.getElementById("roomSelector");
+    var roomName = elementThing.options[elementThing.selectedIndex].text;
+    console.log("roomname: " + roomName)
+	changeComboBox(roomName);
     var response = query(URL, a_t);
     var response_object = JSON.parse(response);
     // console.log(response_object);
@@ -82,8 +86,36 @@ function queryResponse(URL, a_t) {
     	if (temp == td) {
     		console.log(temp);
     		subjects.push(response_object["value"][i]["subject"]);
+    		//2018-07-06T15:00:00.0000000
     		start_times.push(response_object["value"][i]["start"]["dateTime"]);
+    		var changedTime = start_times[start_times.length-1];
+    		console.log("changedTime: " + changedTime);
+    		var h1 = changedTime[11];
+    		console.log("h1: " + h1);
+    		var h2 = changedTime[12];
+    		console.log("h2: " + h2);
+    		h12 = parseInt(h1 + "" + h2)+2;
+    		console.log("h12: " + h12);
+    		var strh12 = h12 + "";
+    		changedTime[11] = strh12[0];
+    		changedTime[12] = strh12[1];
+    		var temp_str = changedTime.split("T")[0] + "T" + h12 + ":" + changedTime.split("T")[1].split(":")[1] + ":" + changedTime.split("T")[1].split(":")[2];
+    		start_times[start_times.length-1] = temp_str;
+    		console.log("temp_str: " + temp_str);
     		end_times.push(response_object["value"][i]["end"]["dateTime"]);
+    		var changedTime = end_times[end_times.length-1];
+    		console.log("changedTime: " + changedTime);
+    		var h1 = changedTime[11];
+    		console.log("h1: " + h1);
+    		var h2 = changedTime[12];
+    		console.log("h2: " + h2);
+    		h12 = parseInt(h1 + "" + h2)+2;
+    		console.log("h12: " + h12);
+    		var strh12 = h12 + "";
+    		changedTime[11] = strh12[0];
+    		changedTime[12] = strh12[1];
+    		var temp_str = changedTime.split("T")[0] + "T" + h12 + ":" + changedTime.split("T")[1].split(":")[1] + ":" + changedTime.split("T")[1].split(":")[2];
+    		end_times[end_times.length-1] = temp_str;
     		organisers.push(response_object["value"][i]["organizer"]["emailAddress"]["name"]);
         	console.log(subjects[i]);
         	console.log(organisers[i]);
@@ -106,7 +138,6 @@ function queryResponse(URL, a_t) {
     }
     populateTable(subjects, organisers, start_times, end_times);
 }
-
 function populateTable(subj, org, st, et) {
 	var hourly_events = [[],[],[],[],[],[],[],[],[],[],[],[],[]]; //a 13 elt 2d array for the hourly slots
 	var t1 = 0;
