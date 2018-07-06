@@ -1,0 +1,128 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>BBD Schedule</title>
+    <meta charset="utf-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <script type="text/javascript" language="javascript" src="js/time.js"></script>
+    <script type="text/javascript" language="javascript" src="js/app.js"></script>
+    <script type="module/javascript" src="/js/config.js"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/table.css">     
+    <link rel="stylesheet" type="text/css" href="css/heading.css"> 
+</head>
+
+<script>
+    var token_full = window.location.hash.substr(1);
+    // console.log(token_full);
+    var fragment = token_full.split("&");
+    // console.log(fragment);
+    var access_token = fragment[0].replace("access_token=", "");    
+    if(access_token == "") {
+        auth();
+    }
+    var t = setInterval("queryResponse('https://graph.microsoft.com/v1.0/cccbf502-6b91-40d6-be02-5ffa0eb711d6/users/Assembly@bbd.co.za/calendar/events?$select=subject%2corganizer%2cstart%2cend', access_token)", 10000);
+    //var tee = setInterval("setToDefaultRoom()", 5000);    //didn't work
+
+</script>
+
+<body  onload = "queryResponse('https://graph.microsoft.com/v1.0/cccbf502-6b91-40d6-be02-5ffa0eb711d6/users/Assembly@bbd.co.za/calendar/events?$select=subject%2corganizer%2cstart%2cend', access_token)">
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12 col-xs-12 col-md-12">
+                <div class="heading stick-top">
+                    <img src="https://www.bbd.co.za/wp-content/uploads/2018/03/BBD-logo.png" alt="im"  align="left"/>
+                    <span class="title">
+                        <span class="clock" id="clock">Clock Section</span>
+                        </span>
+                </div>
+            </div>  
+        </div>
+        <div class="row">
+            <div class="col-lg-6 col-xs-6 col-md-6 table-responsive">
+                <table class="table table-dark table-striped table-responsive">
+                    <thead class="thead-dark">
+							<tr>
+                                <th colspan="2">
+                                    <span class="roomname">Room: </span>
+                                    <select id="roomSelector" onchange="findRoom(this.value)">
+                                      <option value="Assembly">Assembly</option>
+                                      <option value="Flex">Flex</option>
+                                      <option value="iOS">iOS</option>
+                                      <option value="Windows">Windows</option>
+                                    </select>
+                                    <!--<span class="roomname">Room name goes hear</span>-->
+                                </th>
+                         <tr>           
+                            <th class="col-sm-1">Time</th>
+                            <th class="col-sm-4">Booking</th>
+                        </tr>
+                    </thead>
+                    <tbody>                           
+                        <tr>
+                            <td>07:00</td>
+                            <td class="specified" id="b07">___</td>
+                        </tr>
+                        <tr>
+                            <td>08:00</td>
+                            <td class="specified" id="b08">___</td>
+                        </tr>
+                        <tr>
+                            <td>09:00</td>
+                            <td class="specified" id="b09">___</td>
+                        </tr>
+                        <tr>
+                            <td>10:00</td>
+                            <td class="specified" id="b10">___</td>
+                        </tr>
+                        <tr>
+                            <td>11:00</td>
+                            <td class="specified" id="b11">___</td>
+                        </tr>
+                        <tr>
+                            <td>12:00</td>
+                            <td class="specified" id="b12">___</td>
+                        </tr>
+                        <tr>
+                            <td>13:00</td>
+                            <td class="specified" id="b13">___</td>
+                        </tr>
+                        <tr>
+                            <td>14:00</td>
+                            <td class="specified" id="b14">___</td>
+                        </tr>
+                        <tr>
+                            <td>15:00</td>
+                            <td class="specified" id="b15">___</td>
+                        </tr>
+                        <tr>
+                            <td>16:00</td>
+                            <td class="specified" id="b16">___</td>
+                        </tr>
+                        <tr>
+                            <td>17:00</td>
+                            <td class="specified" id="b17">___</td>
+                        </tr>
+                        <tr>
+                            <td>18:00</td>
+                            <td class="specified" id="b18">___</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>  
+    </div>
+
+
+    <script type="text/javascript" language="javascript" src="js/startTime.js"></script>
+
+
+</body>
+
+</html>
